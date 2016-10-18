@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize('postgres://eghnhvmy:4Ux6rwaZSerOqXvyNIX6sgnfVfftpz4B@elmer.db.elephantsql.com:5432/eghnhvmy');
+var sequelize = new Sequelize('postgres://mhcdrivh:38VvuH3V6KGaiK-3NPb-H4paYlDTMV5o@elmer.db.elephantsql.com:5432/mhcdrivh');
 
 var Team = sequelize.define('team', {
   loser: {

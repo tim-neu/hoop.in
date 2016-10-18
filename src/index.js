@@ -1,19 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 
-class App extends React.Component {
-  constructor (props) {
-    super(props),
-    this.state = {};
-  };
+import routes from './router';
 
-  render () {
-    return (
-      <div>
-        <section><h1 className="text-center">Logo</h1></section>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<App />, document.getElementById('root'));
+// Render
+render(
+  routes, document.getElementById('root')
+);

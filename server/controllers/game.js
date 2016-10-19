@@ -7,6 +7,9 @@ var Game = sequelize.define('game', {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW,
   },
+  token: {
+    type: Sequelize.STRING,
+  },
   location: {
     type: Sequelize.STRING,
   },

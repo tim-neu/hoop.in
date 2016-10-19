@@ -6,6 +6,9 @@ var Player = sequelize.define('player', {
   arrivalTime: {
     type: Sequelize.STRING,
   },
+  // token: {
+  // 	type: Sequelize.INTEGER,
+  // },
   active: {
     type: Sequelize.BOOLEAN,
   },

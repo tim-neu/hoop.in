@@ -40,15 +40,8 @@ app.post('/api/newGame', function (req, res) {
 	secretpw++;
 	var location = 'location ' + gameID;
 	var game = Game.build({ token: 'secretpw'+ secretpw, location: location, active: true });
-	game.save().then(function () {
-		console.log('i saved game properly');
-	});
-
-    var team = Team.build({ count: teamCount });
-    team.save().then(function () {
-      console.log('i saved the new team properly');
-      this.setGame(game);
-    });
+	var team1 = Team.build({ count: teamCount });
+	var team2 = Team.build({ count: 0 });
     var player = Player.build({
     	arrivalTime: '6PM',
     	active: false,
@@ -56,16 +49,34 @@ app.post('/api/newGame', function (req, res) {
     	name: 'captain' + playerID,
     	admin: true,
     });
-    player.save().then(function () {
-    	console.log('i saved player properly');
-    	this.setGame(game);
-    	this.setTeam(team);
-    	// team.setPlayer(this);
-    	res.send('hi');
-    });
+	game.save().then(function () {
+		console.log('i saved game properly');
+	    team1.save().then(function () {
+	      console.log('i saved team 1 properly');
+	      this.setGame(game);
+		    player.save().then(function () {
+		    	console.log('i saved player properly');
+		    	this.setGame(game);
+		    	this.setTeam(team1);
+		    	// team.setPlayer(this);
+		    });
+	    });
+	    team2.save().then(function () {
+	      console.log('i saved team 2 properly');
+	      this.setGame(game);
+	    });
+	});
+
+    var obj = {};
+    obj.player = player;
+    obj.team1 = team1;
+    obj.team2 = team2;
+    obj.game = game;
+    res.send(obj);
+
 });
 
-//below is a hard coded data that simulates when a player joins a game 
+//below is hard coded data that simulates when a player joins a game 
 // using the token that they were given. on a post request for a new 
 //player, we need to:
 // 1. Get the token from the req object.
@@ -77,7 +88,7 @@ app.post('/api/newGame', function (req, res) {
 // 7. Set the teamID for the player.
 app.post('/api/newPlayer', function (req, res) {
 	playerID++;
-	var requestToken = 1; //get from req object, hard coding now
+	var requestToken = 'secretpw1'; //get from req object, hard coding now
 	var newPlayer = Player.build({
 		arrivalTime: '6PM',
 		active: false,
@@ -86,10 +97,18 @@ app.post('/api/newPlayer', function (req, res) {
 		admin: false
 	}); //should be taken form the req object hard code now
 	Game.findOne({where: {token: requestToken}}).then(function(game){
-		console.log('I found the game!');
+		// console.log('I found the game!',game);
+		console.log('game id is:',game.dataValues.id);
+		Team.findAll({where: {gameId: game.dataValues.id}}).then(function(teams){
+			console.log('i found the teams with the right game ID!',teams);
+
+		})
 
 	});
 
-    res.send(player);
+    res.send('/api/newPlayer');
 
 });
+
+
+

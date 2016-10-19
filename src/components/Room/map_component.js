@@ -1,19 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-class Room extends Component {
-  constructor (props) {
-    super(props),
-    this.state = {};
-  };
+const Gmap = props => (
+  <iframe
+    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBlnC4Cp2iBrYCbpQ4jLEYIhD4_MGQXxd4&q=Space+Needle,Seattle+WA" className="center-block">;
+  </iframe>
+);
 
-  render () {
-    return (
-      <div>
-        <section><h1 className="text-center">poop</h1></section>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<Room />, document.getElementById('root'));
+export default Gmap;

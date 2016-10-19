@@ -12,6 +12,7 @@
   "author": "Eddie Zaneski",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.15.2",
     "babel-core": "^6.7.7",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-class-properties": "^6.6.0",

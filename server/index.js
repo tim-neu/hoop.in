@@ -52,7 +52,6 @@ app.post('/api/newGame', function (req, res) {
     var player = Player.build({
     	arrivalTime: '6PM',
     	active: false,
-    	// token: secretpw,
     	queued: true,
     	name: 'captain' + playerID,
     	admin: true,

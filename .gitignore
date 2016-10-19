@@ -1,4 +1,3 @@
 node_modules/
 public/bundle.js
 .bash_profile
-src/router.js

@@ -9,16 +9,22 @@ class Room extends React.Component {
     super(props),
     this.state = {};
   }
+
+  componentWillMount() {
+    this.getTeam();
+  }
   
-  getTeam = () => (
-    axios.get(`/api/getPlayers?token=${token}`)
+  getTeam() {
+    const teamGetCall = () => (axios.get(`/api/getPlayers?token=${token}`)
     .then(function (response) {
       console.log(response);
     })
     .catch(function (error) {
       console.log(error);
-    })
-  )
+    }));
+    teamGetCall();
+    setInterval(teamGetCall, 5000);
+  }
 
   render () {
     return (

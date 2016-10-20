@@ -25,13 +25,11 @@ class Create extends Component {
 	    }
 	    // POST: send post request to the server
 	    axios.post('/api/newGame', {
-			data: {
 				name: this.state.name,
 				location: this.state.location,
 				time: this.state.time
-			}
-		})
-		.then(function (response) {
+			})
+		  .then(function (response) {
 			console.log(response);
     	})
     	.catch(function (error) {
@@ -56,9 +54,9 @@ class Create extends Component {
 					<div>
 						<input type='time' name='time' value={this.state.time} onChange={timeEvent => this.setState({ time: timeEvent.target.value })} />
 					</div>
-    	            Value of time: { this.state.time }
-    	            <div>
-    	            	<button>submit</button>
+    	      Value of time: { this.state.time }
+    	      <div>
+    	      	<button>submit</button>
 						<button>back</button>
 					</div>
 				</form>

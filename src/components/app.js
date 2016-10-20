@@ -11,11 +11,10 @@ class App extends React.Component {
     return (
       <div>
         <section><h1 className="text-center">Logo</h1></section>
+        { this.props.children }
       </div>
     );
   }
 }
-
-ReactDOM.render(<App />, document.getElementById('root'));
 
 export default App;

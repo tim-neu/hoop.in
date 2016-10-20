@@ -6,6 +6,7 @@ const Team = require('./controllers/team.js');
 const Game = require('./controllers/game.js');
 const Player = require('./controllers/player.js');
 const app = express();
+// const router = require('./routers/player_router.js');
 Team.belongsTo(Game);
 Team.hasMany(Player);
 Game.hasMany(Team);
@@ -75,6 +76,16 @@ app.post('/api/newGame', function (req, res) {
     res.send(obj);
 
 });
+
+// app.get('/api/getPlayers', function (req, res) {
+// 	let playerData = {team1: null, team2: null};
+// 	Player.findAll({}).then(function (team1) {
+// 		playerData.team1 = team1;
+// 		res.send(playerData);
+// 	}).catch(function(err){
+// 		console.log('error getting team1');
+// 	});
+// });
 
 //below is hard coded data that simulates when a player joins a game 
 // using the token that they were given. on a post request for a new 

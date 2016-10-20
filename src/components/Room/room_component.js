@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import Gmap from './map_component.js';
 import Queue from './queue_component.js';
 import axios from 'axios';
@@ -12,7 +11,7 @@ class Room extends React.Component {
   }
 
   getTeam = () => (
-    axios.get('/api/newTeam')
+    axios.get('/api/getPlayers')
     .then(function (response) {
       console.log(response);
     })
@@ -30,7 +29,5 @@ class Room extends React.Component {
     );
   }
 }
-
-ReactDOM.render(<Room />, document.getElementById('root'));
 
 export default Room;

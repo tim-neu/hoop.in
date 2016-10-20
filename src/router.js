@@ -1,6 +1,6 @@
-//Libs
+// Libs
 import React from 'react';
-import { Router, Route, Link, browserHistory, IndexRedirect } from 'react-router';
+import { Router, Route, browserHistory, IndexRedirect } from 'react-router';
 
 // Components
 import App from './components/App';
@@ -11,9 +11,11 @@ import Room from './components/Room/room_component.js';
 // Routes
 const routes = (
   <Router history={browserHistory}>
-      <Route path="/home" component={Home} />
-      <Route path="/" component={Create} />
-      <Route path="/room" component={Room} />
+    <Route component={App}>
+      <Route path="/" component={Home} />
+      <Route path="room" component={Create} />
+    </Route>
   </Router>
 );
+
 export default routes;

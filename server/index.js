@@ -102,23 +102,33 @@ app.post('/api/newPlayer', function (req, res) {
 		Team.findAll({where: {gameId: game.dataValues.id}}).then(function(teams){
 			console.log('i found the teams with the right game ID!',teams);
 			var team1 = teams[0];
+			var curCount1 = team1.dataValues.count;
 			var team2 = teams[1];
-			if (team1.dataValues.count < 3){
+			var curCount2 = team2.dataValues.count;
+			if (curCount1 < 3){
 				newPlayer.save().then(function(){
 					console.log(' team1 has a spot open');
 					this.setTeam(team1);
+					this.setGame(game);
 				})
+				curCount1++;
+				team1.update({count: curCount1});
 			}
-			else if (team2.dataValues.count < 3){
+			else if (curCount2 < 3){
 				newPlayer.save().then(function(){
 					console.log(' team 2 has a spot open');
 					this.setTeam(team2);
+					this.setGame(game);
 				})
+				curCount2++;
+				team2.update({count: curCount2});
 			}
 			else{
 				newPlayer.save().then(function(){
+
 					console.log('the player has to wait for the next game');
 					console.log('check arrivalTime to see who the next player is');
+					this.setGame(game);
 				})
 			}
 

@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import Gmap from './map_component.js';
 import Queue from './queue_component.js';
 import axios from 'axios';
-
+let token = "njhgfk";
 
 class Room extends React.Component {
   constructor (props) {
     super(props),
     this.state = {};
   }
-
+  
   getTeam = () => (
-    axios.get('/api/getPlayers')
+    axios.get(`/api/getPlayers?token=${token}`)
     .then(function (response) {
       console.log(response);
     })

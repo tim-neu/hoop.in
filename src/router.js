@@ -1,6 +1,6 @@
 // Libs
 import React from 'react';
-import { Router, Route, browserHistory, IndexRedirect } from 'react-router';
+import { Router, Route, hashHistory } from 'react-router';
 
 // Components
 import App from './components/App';
@@ -10,10 +10,11 @@ import Room from './components/Room/room_component.js';
 
 // Routes
 const routes = (
-  <Router history={browserHistory}>
+  <Router history={hashHistory}>
     <Route component={App}>
       <Route path="/" component={Home} />
-      <Route path="room" component={Create} />
+      <Route path="/create" component={Create} />
+      <Route path="/room" component={Room} />
     </Route>
   </Router>
 );

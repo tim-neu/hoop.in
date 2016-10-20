@@ -97,13 +97,36 @@ app.post('/api/newPlayer', function (req, res) {
 		admin: false
 	}); //should be taken form the req object hard code now
 	Game.findOne({where: {token: requestToken}}).then(function(game){
-		// console.log('I found the game!',game);
+		console.log('I found the game!',game);
 		console.log('game id is:',game.dataValues.id);
 		Team.findAll({where: {gameId: game.dataValues.id}}).then(function(teams){
 			console.log('i found the teams with the right game ID!',teams);
+			var team1 = teams[0];
+			var team2 = teams[1];
+			if (team1.dataValues.count < 3){
+				newPlayer.save().then(function(){
+					console.log(' team1 has a spot open');
+					this.setTeam(team1);
+				})
+			}
+			else if (team2.dataValues.count < 3){
+				newPlayer.save().then(function(){
+					console.log(' team 2 has a spot open');
+					this.setTeam(team2);
+				})
+			}
+			else{
+				newPlayer.save().then(function(){
+					console.log('the player has to wait for the next game');
+					console.log('check arrivalTime to see who the next player is');
+				})
+			}
+
 
 		})
 
+	}).catch(function(err){
+		console.log('i couldnt find the game');
 	});
 
     res.send('/api/newPlayer');

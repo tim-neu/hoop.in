@@ -95,7 +95,14 @@ app.post('/api/newPlayer', function (req, res) {
 		queued: true,
 		name: 'player' + playerID,
 		admin: false
-	}); //should be taken form the req object hard code now
+	}).save()
+	  .then(function() {
+	  	console.log("I saved ", newPlayer)
+	  }).catch(function(error) {
+	    console.log("Error saving player", error);
+	  });
+
+	//should be taken form the req object hard code now
 	Game.findOne({where: {token: requestToken}}).then(function(game){
 		console.log('I found the game!',game);
 		console.log('game id is:',game.dataValues.id);

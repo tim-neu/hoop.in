@@ -7,7 +7,6 @@ const Team = require('./controllers/team.js');
 const Game = require('./controllers/game.js');
 const Player = require('./controllers/player.js');
 const app = express();
-// const router = require('./routers/player_router.js');
 Team.belongsTo(Game);
 Team.hasMany(Player);
 Game.hasMany(Team);
@@ -41,66 +40,48 @@ function makeid()
 
    return secretpw;
 }
+
 var gameID = 0; 
 var playerID = 0;
 var teamCount = 0;
 
 app.post('/api/newGame', function (req, res) {
+	console.log("req body is:",req.body);
 	gameID++;
 	playerID++;
 	teamCount++;
 	var secretpw = makeid();
 	console.log('this is the secretpw inside post', secretpw);
 
+	// secretpw++;
 	var location = req.body.location + gameID;
-	var game = Game.build({ token: secretpw, location: location, active: true });
-	var team1 = Team.build({ count: teamCount });
-	var team2 = Team.build({ count: 0 });
+	var game = Game.build({ token: secretpw, location: location, active: true }); // secrer=tpw is generated from bcrypt
+	game.save().then(function () {
+		console.log('i saved game properly');
+	});
+
+    var team = Team.build({ count: teamCount });
+    team.save().then(function () {
+      console.log('i saved the new team properly');
+      this.setGame(game);
+    });
     var player = Player.build({
     	arrivalTime: req.body.time,
     	active: false,
     	queued: true,
-    	name: req.body.name,
+    	name: req.body.name + playerID,
     	admin: true,
     });
-	game.save().then(function () {
-		console.log('i saved game properly');
-	    team1.save().then(function () {
-	      console.log('i saved team 1 properly');
-	      this.setGame(game);
-		    player.save().then(function () {
-		    	console.log('i saved player properly');
-		    	this.setGame(game);
-		    	this.setTeam(team1);
-		    	// team.setPlayer(this);
-		    });
-	    });
-	    team2.save().then(function () {
-	      console.log('i saved team 2 properly');
-	      this.setGame(game);
-	    });
-	});
-
-    var obj = {};
-    obj.player = player;
-    obj.team1 = team1;
-    obj.team2 = team2;
-    obj.game = game;
-    res.send(obj);
-
+    player.save().then(function () {
+    	console.log('i saved player properly');
+    	this.setGame(game);
+    	this.setTeam(team);
+    	// team.setPlayer(this);
+    	res.send('hi');
+    });
 });
 
-// app.get('/api/getPlayers', function (req, res) {
-// 	let playerData = {team1: null, team2: null};
-// 	Player.findAll({}).then(function (team1) {
-// 		playerData.team1 = team1;
-// 		res.send(playerData);
-// 	}).catch(function(err){
-// 		console.log('error getting team1');
-// 	});
-// });
-
-//below is hard coded data that simulates when a player joins a game 
+//below is a hard coded data that simulates when a player joins a game 
 // using the token that they were given. on a post request for a new 
 //player, we need to:
 // 1. Get the token from the req object.
@@ -112,64 +93,19 @@ app.post('/api/newGame', function (req, res) {
 // 7. Set the teamID for the player.
 app.post('/api/newPlayer', function (req, res) {
 	playerID++;
-	var requestToken = 'secretpw1'; //get from req object, hard coding now
+	var requestToken = 1; //get from req object, hard coding now
 	var newPlayer = Player.build({
 		arrivalTime: '6PM',
 		active: false,
 		queued: true,
 		name: 'player' + playerID,
 		admin: false
-	}).save()
-	  .then(function() {
-	  	console.log("I saved ", newPlayer)
-	  }).catch(function(error) {
-	    console.log("Error saving player", error);
-	  });
-
-	//should be taken form the req object hard code now
+	}); //should be taken form the req object hard code now
 	Game.findOne({where: {token: requestToken}}).then(function(game){
-		console.log('I found the game!',game);
-		console.log('game id is:',game.dataValues.id);
-		Team.findAll({where: {gameId: game.dataValues.id}}).then(function(teams){
-			console.log('i found the teams with the right game ID!',teams);
-			var team1 = teams[0];
-			var curCount1 = team1.dataValues.count;
-			var team2 = teams[1];
-			var curCount2 = team2.dataValues.count;
-			if (curCount1 < 3){
-				newPlayer.save().then(function(){
-					console.log(' team1 has a spot open');
-					this.setTeam(team1);
-					this.setGame(game);
-				})
-				curCount1++;
-				team1.update({count: curCount1});
-			}
-			else if (curCount2 < 3){
-				newPlayer.save().then(function(){
-					console.log(' team 2 has a spot open');
-					this.setTeam(team2);
-					this.setGame(game);
-				})
-				curCount2++;
-				team2.update({count: curCount2});
-			}
-			else{
-				newPlayer.save().then(function(){
+		console.log('I found the game!');
 
-					console.log('the player has to wait for the next game');
-					console.log('check arrivalTime to see who the next player is');
-					this.setGame(game);
-				})
-			}
-
-
-		})
-
-	}).catch(function(err){
-		console.log('i couldnt find the game');
 	});
 
-    res.send('/api/newPlayer');
+    res.send(player);
 
 });

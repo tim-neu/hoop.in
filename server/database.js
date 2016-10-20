@@ -5,4 +5,3 @@ var sequelize = new Sequelize('postgres://svmuoadp:8ZWQdJbithVIP05btL4TQVtIn-_Y3
 module.exports = {
   sequelize: sequelize,
 };
-

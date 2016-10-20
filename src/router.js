@@ -1,4 +1,4 @@
-// Libs
+//Libs
 import React from 'react';
 import { Router, Route, hashHistory } from 'react-router';
 
@@ -18,5 +18,4 @@ const routes = (
     </Route>
   </Router>
 );
-
 export default routes;

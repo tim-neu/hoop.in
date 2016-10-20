@@ -1,3 +1,4 @@
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const sequelize = require('./database.js').sequelize;
@@ -30,24 +31,36 @@ sequelize.sync({ force: true }).then(function () {
 // 1. create a new game table.
 // 2. create a new Team and set the gameID(the foreign key) of the team.
 // 3. create a new player and set the gameID and teamID of the player.
+function makeid()
+{
+   var secretpw = "";
+   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+   for( var i=0; i < 5; i++ )
+       secretpw += possible.charAt(Math.floor(Math.random() * possible.length));
+
+   return secretpw;
+}
 var gameID = 0; 
 var playerID = 0;
 var teamCount = 0;
-var secretpw = 0;
+
 app.post('/api/newGame', function (req, res) {
 	gameID++;
 	playerID++;
 	teamCount++;
-	secretpw++;
-	var location = 'location ' + gameID;
-	var game = Game.build({ token: 'secretpw'+ secretpw, location: location, active: true });
+	var secretpw = makeid();
+	console.log('this is the secretpw inside post', secretpw);
+
+	var location = req.body.location + gameID;
+	var game = Game.build({ token: secretpw, location: location, active: true });
 	var team1 = Team.build({ count: teamCount });
 	var team2 = Team.build({ count: 0 });
     var player = Player.build({
-    	arrivalTime: '6PM',
+    	arrivalTime: req.body.time,
     	active: false,
     	queued: true,
-    	name: 'captain' + playerID,
+    	name: req.body.name,
     	admin: true,
     });
 	game.save().then(function () {
@@ -160,6 +173,3 @@ app.post('/api/newPlayer', function (req, res) {
     res.send('/api/newPlayer');
 
 });
-
-
-

@@ -49,18 +49,15 @@ class Create extends Component {
 					<div>
 						<input type='text' name='name' placeholder='name' value={this.state.name} onChange={nameEvent => this.setState({ name: nameEvent.target.value })} />
 					</div>
-						Value of name: { this.state.name }
 					<div>
 						<input type='text' name='location' placeholder='location' value={this.state.location} onChange={locationEvent =>this.setState({ location: locationEvent.target.value })} />
 					</div>
-						Value of location: { this.state.location }
 					<div>
 						<input type='time' name='time' value={this.state.time} onChange={timeEvent => this.setState({ time: timeEvent.target.value })} />
 					</div>
-    	      Value of time: { this.state.time }
-    	      <div>
-    	      			<button onClick={this.handleSubmit}><Link to='/room' >submit</Link></button>
-						<button>back</button>
+    	    <div>
+    	    	<button onClick={this.handleSubmit}><Link to='/share' >submit</Link></button>
+						<button><Link to='/' >back</Link></button>
 					</div>
 				</form>
 			</div>

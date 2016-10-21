@@ -19,8 +19,9 @@ playerController.POST = (req, res) => {
 		name: req.body.name,
 		admin: false,
 	});
+
 	//should be taken form the req object hard code now
-	Game.findOne({where: {token: requestToken}}).then(function(game){
+	Game.findOne({ where: {token: requestToken}}).then(function(game){
 		console.log('I found the game!',game);
 		console.log('game id is:',game.dataValues.id);
 		Team.findAll({where: {gameId: game.dataValues.id}}).then(function(teams){
@@ -29,27 +30,35 @@ playerController.POST = (req, res) => {
 			var curCount1 = team1.dataValues.count;
 			var team2 = teams[1];
 			var curCount2 = team2.dataValues.count;
-			if (curCount1 <= 5){
+			var teamToBePlacedFirst;
+			var otherTeam;
+			if (curCount1 > curCount2){
+				teamToBePlacedFirst = team1;
+				otherTeam = team2;
+			}
+			else{
+				teamToBePlacedFirst = team2;
+				otherTeam = team1;
+			}
+			if (teamToBePlacedFirst.dataValues.count <= 4){
 				newPlayer.save().then(function(){
 					console.log(' team1 has a spot open');
-					this.setTeam(team1);
+					this.setTeam(teamToBePlacedFirst);
 					this.setGame(game);
 				})
-				curCount1++;
-				team1.update({count: curCount1});
+				teamToBePlacedFirst.update({count: teamToBePlacedFirst.dataValues.count + 1});
 			}
-			else if (curCount2 <= 5){
+			else if (otherTeam.dataValues.count <= 4){
 				newPlayer.save().then(function(){
 					console.log(' team 2 has a spot open');
-					this.setTeam(team2);
+					this.setTeam(otherTeam);
 					this.setGame(game);
 				})
 				curCount2++;
-				team2.update({count: curCount2});
+				otherTeam.update({count: otherTeam.dataValues.count + 1});
 			}
 			else{
 				newPlayer.save().then(function(){
-
 					console.log('the player has to wait for the next game');
 					console.log('check arrivalTime to see who the next player is');
 					this.setGame(game);

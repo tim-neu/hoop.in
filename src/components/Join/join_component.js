@@ -41,9 +41,7 @@ class Join extends Component {
 			console.log(error);
 		})
 		this.setState({name: '', token: ''});
-
-
-	}
+	};
 
 	render () {
 		return (
@@ -63,10 +61,8 @@ class Join extends Component {
 					</div>
 				</form>
 			</div>
-			)
+			);
 	}
-		
 }
-
 
 export default Join;

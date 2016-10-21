@@ -13,6 +13,7 @@ class Join extends Component {
 		console.log('i was submitted and the event is:',nameEvent.target.value);
 		this.setState({name: nameEvent.target.value})
 	}
+	
 	handleCodeInputChange = (codeEvent) => {
 		codeEvent.preventDefault();
 		console.log('i was submitted and the code is:',codeEvent.target.value);

@@ -9,8 +9,9 @@ playerController.GET = (req, res) => {
 };
 
 playerController.POST = (req, res) => {
+
 	//res.send("I'm in player controller post correctly!");
-	var requestToken = '123'; //get from req object, hard coding now
+	var requestToken = req.body.token; //get from req object, hard coding now
 	var newPlayer = Player.build({
 		arrivalTime: '9PM',
 		active: false,
@@ -28,7 +29,7 @@ playerController.POST = (req, res) => {
 			var curCount1 = team1.dataValues.count;
 			var team2 = teams[1];
 			var curCount2 = team2.dataValues.count;
-			if (curCount1 < 3){
+			if (curCount1 <= 5){
 				newPlayer.save().then(function(){
 					console.log(' team1 has a spot open');
 					this.setTeam(team1);
@@ -37,7 +38,7 @@ playerController.POST = (req, res) => {
 				curCount1++;
 				team1.update({count: curCount1});
 			}
-			else if (curCount2 < 3){
+			else if (curCount2 <= 5){
 				newPlayer.save().then(function(){
 					console.log(' team 2 has a spot open');
 					this.setTeam(team2);

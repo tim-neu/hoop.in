@@ -18,7 +18,7 @@ function makeid() {
 }
 
 gameController.POST = (req, res) => {
-  var secretpw = '123';
+  var secretpw = makeid();
   console.log('this is the secret pw inside post', secretpw);
   var location = req.body.location;
   var game = Game.build({ token: secretpw, location: location, active: true });
@@ -62,3 +62,4 @@ gameController.POST = (req, res) => {
 };
 
 module.exports = gameController;
+

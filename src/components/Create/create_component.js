@@ -32,6 +32,7 @@ class Create extends Component {
 				time: this.state.time
 			})
 		  .then(function (response) {
+		  	localStorage.setItem("token", response.data.game.token);
 			console.log(response);
     	})
     	.catch(function (error) {

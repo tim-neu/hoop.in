@@ -93,15 +93,7 @@ app.listen(3000, function () {
 
 // });
 
-// app.get('/api/getPlayers', function (req, res) {
-// 	let playerData = {team1: null, team2: null};
-// 	Player.findAll({}).then(function (team1) {
-// 		playerData.team1 = team1;
-// 		res.send(playerData);
-// 	}).catch(function(err){
-// 		console.log('error getting team1');
-// 	});
-// });
+
 
 //below is hard coded data that simulates when a player joins a game 
 // using the token that they were given. on a post request for a new 

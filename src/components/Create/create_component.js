@@ -32,6 +32,7 @@ class Create extends Component {
 				time: this.state.time
 			})
 		  .then(function (response) {
+		  	localStorage.setItem("token", response.data.game.token);
 			console.log(response);
     	})
     	.catch(function (error) {
@@ -56,7 +57,7 @@ class Create extends Component {
 						<input type='time' name='time' value={this.state.time} onChange={timeEvent => this.setState({ time: timeEvent.target.value })} />
 					</div>
     	    <div>
-    	    	<button onClick={this.handleSubmit}><Link to={'/share' + '/'} >submit</Link></button>
+    	    	<button onClick={this.handleSubmit}><Link to='/share' >submit</Link></button>
 						<button><Link to='/' >back</Link></button>
 					</div>
 				</form>

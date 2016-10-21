@@ -17,7 +17,7 @@ const routes = (
       <Route path="/" component={Home} />
       <Route path="/create" component={Create} />
       <Route path="/share" component={Share} />
-      <Route path="/room" component={Room} />
+      <Route path="/room/:token" component={Room} />
       <Route path="/join" component={Join} />
     </Route>
   </Router>

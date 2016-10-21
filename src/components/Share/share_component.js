@@ -19,7 +19,7 @@ class Share extends Component {
         <section><h1>Share Game</h1></section>
         <div>https://hoopi.in/Link-to-room</div>
         <div>
-          <button><Link to='/room' >create</Link></button>
+          <button><Link to='/room/ponys' >create</Link></button>
           <button><Link to='/create' >back</Link></button>
         </div>
       </div>

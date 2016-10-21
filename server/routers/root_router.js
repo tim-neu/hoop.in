@@ -7,6 +7,7 @@ var playerRouter = require('./player_router.js');
 
 rootRouter.use('/newGame', gameRouter);
 rootRouter.use('/getPlayers', playerRouter);
+rootRouter.use('/newPlayer', playerRouter);
 
 // rootRouter.get('/', function (req, res) {
 // 	res.send('i reached rootRouter');

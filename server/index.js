@@ -56,6 +56,7 @@ app.post('/api/newGame', function (req, res) {
 	var game = Game.build({ token: secretpw, location: location, active: true });
 	var team1 = Team.build({ count: teamCount });
 	var team2 = Team.build({ count: 0 });
+	console.log(req.body.time, "this is req.body.time");
     var player = Player.build({
     	arrivalTime: req.body.time,
     	active: false,

@@ -1,6 +1,7 @@
 //Libs
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router';
 
 //Components
 // import GameLocation from './game_location_component.js';
@@ -11,7 +12,7 @@ class Create extends Component {
 	constructor (props) {
 		super(props);
 
-		this.state = { name: '', location: '', time: '' };
+		this.state = { name: '', location: '', time: '' , token: ''};
 	}
 
 	handleSubmit = (event) => {
@@ -24,6 +25,7 @@ class Create extends Component {
 	    	return;
 	    }
 	    // POST: send post request to the server
+	    const self = this;
 	    axios.post('/api/newGame', {
 				name: this.state.name,
 				location: this.state.location,
@@ -35,14 +37,15 @@ class Create extends Component {
     	.catch(function (error) {
     		console.log(error);
     	})
-	    this.setState({name: '', location: '', time: ''});
+	    this.setState({name: '', location: '', time: '', token: 'empty'});
 	};
 
     render () {
+    	console.log(this.state)
 		return (
 			<div className='text-center'>
 				<section><h1>Create Game</h1></section>
-				<form onSubmit={this.handleSubmit}>
+				<form>
 					<div>
 						<input type='text' name='name' placeholder='name' value={this.state.name} onChange={nameEvent => this.setState({ name: nameEvent.target.value })} />
 					</div>
@@ -56,7 +59,7 @@ class Create extends Component {
 					</div>
     	      Value of time: { this.state.time }
     	      <div>
-    	      	<button>submit</button>
+    	      			<button onClick={this.handleSubmit}><Link to='/room' >submit</Link></button>
 						<button>back</button>
 					</div>
 				</form>

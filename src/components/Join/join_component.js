@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router';
 import axios from 'axios';
 
 class Join extends Component {
@@ -57,7 +58,7 @@ class Join extends Component {
 					</div>
 					<div>
 						<button type='submit'>Submit</button>
-						<button>back</button>			
+						<button><Link to='/' >back</Link></button>			
 					</div>
 				</form>
 			</div>

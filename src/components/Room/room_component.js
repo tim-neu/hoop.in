@@ -39,7 +39,7 @@ class Room extends React.Component {
     return (
       <div className="room">
         <Gmap />
-        <Queue players={this.state.players}/>
+        <Queue players={this.state.players} gameToken={this.state.token} />
       </div>
     );
   }

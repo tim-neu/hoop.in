@@ -107,4 +107,29 @@ playerController.POST = (req, res) => {
 
 
 
+
+
+playerController.DELETE = (req, res) => {
+	var gameToken = req.body.token;
+	var playerName = req.body.name;
+	console.log(req.body.token)
+
+	Game.findOne({ where: {token: gameToken}})
+	.then(function(game){
+		Team.findAll({ where: {gameId: game.id}})
+		.then(function(teams){
+			Player.destroy({ 
+				where: {
+					name: playerName
+				}
+			});
+		}).catch(function(err){
+			console.log('Team not found');
+		});
+	}).catch(function(err){
+		console.log('Game not found');
+	})
+}
+
+
 module.exports = playerController;

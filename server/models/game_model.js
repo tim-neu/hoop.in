@@ -4,7 +4,7 @@ var sequelize = require('../database.js').sequelize;
 
 var Game = sequelize.define('game', {
   time: {
-    type: Sequelize.DATE,
+    type: Sequelize.STRING,
     defaultValue: Sequelize.NOW,
   },
   token: {

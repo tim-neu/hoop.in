@@ -21,7 +21,7 @@ gameController.POST = (req, res) => {
   var secretpw = makeid();
   console.log('this is the secret pw inside post', secretpw);
   var location = req.body.location;
-  var game = Game.build({ token: secretpw, location: location, active: true });
+  var game = Game.build({ time: req.body.time, token: secretpw, location: location, active: true });
   var team1 = Team.build({ count: 1 });
   var team2 = Team.build({ count: 0 });
   console.log(req.body.time, 'this is req.body.time');

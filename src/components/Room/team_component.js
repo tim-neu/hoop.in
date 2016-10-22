@@ -3,8 +3,8 @@ import Player from './player_component.js';
 const players = ['Tim', 'Joe', 'Bob', 'John', 'Sam'];
 
 const Team = (props) => {
-	const playerList = players.map((name, i) => {
-		return <Player name={name} key={i} />;
+	const playerList = props.team.map((name, i) => {
+		return <Player name={name.name} key={i} />;
 	});
 	return (
 		<div>

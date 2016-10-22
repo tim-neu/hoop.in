@@ -1,7 +1,7 @@
 //Libs
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
 
 //Components
 // import GameLocation from './game_location_component.js';
@@ -33,6 +33,7 @@ class Create extends Component {
 			})
 		  .then(function (response) {
 		  	localStorage.setItem("token", response.data.game.token);
+		  	browserHistory.push('/share')
 			console.log(response);
     	})
     	.catch(function (error) {
@@ -57,7 +58,7 @@ class Create extends Component {
 						<input type='time' name='time' value={this.state.time} onChange={timeEvent => this.setState({ time: timeEvent.target.value })} />
 					</div>
     	    <div>
-    	    	<button onClick={this.handleSubmit}><Link to='/share' >submit</Link></button>
+    	    	<button onClick={this.handleSubmit}>submit</button>
 						<button><Link to='/' >back</Link></button>
 					</div>
 				</form>

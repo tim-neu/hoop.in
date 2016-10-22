@@ -6,19 +6,21 @@ import axios from 'axios';
 class Room extends React.Component {
   constructor (props) {
     super(props),
-    this.state = {
-      teams: { redteam: null, blueteam: null },
-    };
+    this.state = {players: { team1: [], team2: [], queue: [] }};
   }
 
   componentWillMount() {
+    var self = this;
+    this.setState({ token: localStorage.getItem('token') });
     this.getTeam();
   }
 
   getTeam() {
-    const teamGetCall = () => (axios.get(`/api/getPlayers?token=${token}`)
+    var self = this;
+    const teamGetCall = () => (axios.get(`/api/getPlayers?token=${this.state.token}`)
     .then(function (response) {
-      console.log(response);
+      console.log(response)
+      self.setState({players: { team1: response.data.team1, team2: response.data.team2, queue: response.data.queue }});
     })
     .catch(function (error) {
       console.log(error);
@@ -32,9 +34,9 @@ class Room extends React.Component {
 
   render () {
     return (
-      <div className="room" onClick={this.getTeam}>
+      <div className="room">
         <Gmap />
-        <Queue />
+        <Queue players={this.state.players}/>
       </div>
     );
   }

@@ -22,6 +22,7 @@ class Join extends Component {
         submitEvent.preventDefault();
         var name = this.state.name.trim();
         var code = this.state.token.trim();
+        localStorage.setItem("token", code);
         console.log('i was submitted and code and name is:',code,name);
         axios({
             method: 'POST',

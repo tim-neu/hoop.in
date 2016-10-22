@@ -4,5 +4,6 @@ const playerRouter = express.Router();
 
 playerRouter.get('/', playerController.GET);
 playerRouter.post('/', playerController.POST);
+playerRouter.delete('/', playerController.DELETE);
 
 module.exports = playerRouter;

@@ -30,7 +30,7 @@ class Room extends React.Component {
     })
     );
     teamGetCall();
-    setInterval(teamGetCall, 5000);
+    setInterval(teamGetCall, 15000);
   }
 
   // pass teams object into queue

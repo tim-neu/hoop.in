@@ -1,3 +1,11 @@
 ul {
 	list-style: none;
 }
+
+.left {
+	float: left;
+}
+
+.red {
+	color:red;
+}

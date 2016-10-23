@@ -9,6 +9,8 @@ import Autocomplete from 'react-google-autocomplete';
 // import SubmitButton from './submit_component.js';
 // import BackButton from './back_component.js';
 
+import CSS from "../../CSS/create.css";
+
 class Create extends Component {
 	constructor (props) {
 		super(props);
@@ -44,25 +46,20 @@ class Create extends Component {
 	};
 
     render () {
-    	console.log(this.state)
 		return (
 			<div className='text-center'>
 				<section><h1>Create Game</h1></section>
-				<form>
-					<div>
+				<div className='body'>
+					<form className='create-body'>
 						<input type='text' name='name' placeholder='name' value={this.state.name} onChange={nameEvent => this.setState({ name: nameEvent.target.value })} />
-					</div>
-					<div>
 						<Autocomplete types={['address']} type='text' name='location' placeholder='location' value={this.state.location} onChange={locationEvent =>this.setState({ location: locationEvent.target.value })} />
-					</div>
-					<div>
 						<input type='time' name='time' value={this.state.time} onChange={timeEvent => this.setState({ time: timeEvent.target.value })} />
-					</div>
-    	    <div>
-    	    	<button onClick={this.handleSubmit}>submit</button>
-						<button><Link to='/' >back</Link></button>
-					</div>
-				</form>
+    	  	  <div>
+    	  	  	<button onClick={this.handleSubmit}><Link to='/share' >submit</Link></button>
+							<button><Link to='/' >back</Link></button>
+						</div>
+					</form>
+				</div>
 			</div>
 		);
 	}

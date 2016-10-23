@@ -9,8 +9,8 @@ const Queue = props => {
   else{
   	console.log(props.players.team1,"props.players.team1 in else")
 	return (<div>
-		<Team team={props.players.team1} color={'blue'} gameToken={props.gameToken} />
-	  	<Team team={props.players.team2} color={'red'} gameToken={props.gameToken} /> 
+		<Team team={props.players.team1} color={'blue'} gameToken={props.gameToken} getTeam={props.getTeam} />
+	  	<Team team={props.players.team2} color={'red'} gameToken={props.gameToken} getTeam={props.getTeam} /> 
 	  </div>)
 }
 };

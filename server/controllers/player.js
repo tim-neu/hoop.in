@@ -110,6 +110,8 @@ playerController.POST = (req, res) => {
 
 
 playerController.DELETE = (req, res) => {
+    console.log('i hit player controller delete!');
+    console.log('and req.body is:',req.body);
 	var gameToken = req.body.token;
 	var playerName = req.body.name;
 	console.log(req.body.token)
@@ -123,6 +125,7 @@ playerController.DELETE = (req, res) => {
 					name: playerName
 				}
 			});
+            res.send('I deleted the player!');
 		}).catch(function(err){
 			console.log('Team not found');
 		});

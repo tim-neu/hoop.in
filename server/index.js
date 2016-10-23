@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const sequelize = require('./database.js').sequelize;
 var Sequelize = require('sequelize');
 var rootRouter = require('./routers/root_router.js');
+const path = require('path');
 
 // const Team = require('./controllers/team.js');
 // const Game = require('./controllers/game.js').game;

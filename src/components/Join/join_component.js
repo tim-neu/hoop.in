@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
+import Autocomplete from 'react-google-autocomplete';
 import axios from 'axios';
 class Join extends Component {
     constructor (props){

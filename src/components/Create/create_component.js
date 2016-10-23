@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {Link, browserHistory} from 'react-router';
+import Autocomplete from 'react-google-autocomplete';
 
 //Components
 // import GameLocation from './game_location_component.js';
@@ -52,7 +53,7 @@ class Create extends Component {
 						<input type='text' name='name' placeholder='name' value={this.state.name} onChange={nameEvent => this.setState({ name: nameEvent.target.value })} />
 					</div>
 					<div>
-						<input type='text' name='location' placeholder='location' value={this.state.location} onChange={locationEvent =>this.setState({ location: locationEvent.target.value })} />
+						<Autocomplete types={['address']} type='text' name='location' placeholder='location' value={this.state.location} onChange={locationEvent =>this.setState({ location: locationEvent.target.value })} />
 					</div>
 					<div>
 						<input type='time' name='time' value={this.state.time} onChange={timeEvent => this.setState({ time: timeEvent.target.value })} />

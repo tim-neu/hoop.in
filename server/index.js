@@ -25,6 +25,10 @@ sequelize.sync({ force: true }).then(function () {
 
 app.use('/api', rootRouter);
 
+app.get('*', function (request, response){
+  response.sendFile(path.resolve(__dirname, '../public', 'index.html'))
+});
+
 app.listen(3000, function () {
 	console.log('Listnening on 3000');
 });

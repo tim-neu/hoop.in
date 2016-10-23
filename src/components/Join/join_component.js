@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
+import Autocomplete from 'react-google-autocomplete';
 import axios from 'axios';
 class Join extends Component {
     constructor (props){
         super(props);
-        this.state = {name: '', token: ''}
+        const queryToken = this.getParameterByName('token');
+        this.state = {name: '', token: queryToken || ''}
     }
+
     handleNameInputChange = (nameEvent) => {
         nameEvent.preventDefault();
         console.log('i was submitted and the event is:',nameEvent.target.value);
@@ -17,6 +20,19 @@ class Join extends Component {
         console.log('i was submitted and the code is:',codeEvent.target.value);
         this.setState({token: codeEvent.target.value});
     }
+    //credit: http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+    getParameterByName = (name, url) => {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
     handleSubmit =(submitEvent) => {
         console.log('i was submitted');
         submitEvent.preventDefault();

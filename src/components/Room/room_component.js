@@ -30,7 +30,7 @@ class Room extends React.Component {
     })
     );
     teamGetCall();
-    setInterval(teamGetCall, 15000);
+    setInterval(teamGetCall, 5000);
   }
 
   // pass teams object into queue
@@ -39,7 +39,7 @@ class Room extends React.Component {
     return (
       <div className="room">
         <Gmap />
-        <Queue players={this.state.players} gameToken={this.state.token} />
+        <Queue players={this.state.players} gameToken={this.state.token} getTeam={this.getTeam.bind(this)} />
       </div>
     );
   }

@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const sequelize = require('./database.js').sequelize;
 var Sequelize = require('sequelize');
 var rootRouter = require('./routers/root_router.js');
-const path = require('path');
 
 // const Team = require('./controllers/team.js');
 // const Game = require('./controllers/game.js').game;
@@ -19,10 +18,6 @@ const app = express();
 // Player.belongsTo(Game);
 
 app.use(express.static('./public'));
-
-app.get('*', function (request, response){
-  response.sendFile(path.resolve(__dirname, '../public', 'index.html'))
-});
 
 app.use(bodyParser.json());
 sequelize.sync({ force: true }).then(function () {

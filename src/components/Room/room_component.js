@@ -15,6 +15,16 @@ class Room extends React.Component {
     this.getTeam();
   }
 
+  getTeamForDeleteButton() {
+    var self = this;
+    axios.get(`/api/getPlayers?token=${this.state.token}`)
+    .then (function (response) {
+      self.setState({players: {team1: response.data.team1, team2: response.data.team2, queue: response.data.queue}});
+    })
+    .catch(function (error) {
+      console.log('the error is in room romponent get team for delete button');
+    })
+  }
   getTeam() {
     var self = this;
     const teamGetCall = () => (axios.get(`/api/getPlayers?token=${this.state.token}`)
@@ -39,7 +49,7 @@ class Room extends React.Component {
     return (
       <div className="room">
         <Gmap />
-        <Queue players={this.state.players} gameToken={this.state.token} getTeam={this.getTeam.bind(this)} />
+        <Queue players={this.state.players} gameToken={this.state.token} getTeam={this.getTeamForDeleteButton.bind(this)} />
       </div>
     );
   }

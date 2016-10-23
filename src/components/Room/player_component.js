@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class Player extends React.Component {
 	constructor (props) {
@@ -9,20 +10,22 @@ class Player extends React.Component {
 	removePlayer() {
 		var self = this;
 		console.log('i was clicked!');
-		// axios({
-		// 	method: 'delete',
-		// 	url: '/api/deletePlayer',
-		// 	data: {
-		// 		name: this.props.name,
-		// 		token: this.props.gameToken
-		// 	}
-		// })
-		// .then(function (resp) {
-		// 	console.log('i deleted the player, the resp is:',resp);
-		// })
-		// .catch(function (err) {
-		// 	console.log('i failed in deleteing the player');
-		// });
+		axios({
+			method: 'delete',
+			url: '/api/deletePlayer',
+			data: {
+				name: this.props.name,
+				token: this.props.gameToken
+			}
+		})
+		.then(function (resp) {
+			console.log('i deleted the player, the resp is:',resp);
+			console.log('i have the right function!', self.props.getTeam);
+			self.props.getTeam();
+		})
+		.catch(function (err) {
+			console.log('i failed in deleteing the player',err);
+		});
 	}
 
 	render () {

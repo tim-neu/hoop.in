@@ -1,0 +1,112 @@
+/* BODY */
+
+body {
+	font-family:'Roboto Slab', serif;
+}
+
+.body {
+	width: 100%;
+	font-family: 'Helvetica', sans-serif;
+	font-kerning: auto;
+	font-size: 18px;
+	height: 750px;
+}
+
+.home-body-buttons button {
+	position: relative;
+	top: 150px;
+	margin: 35px 20px 0px 20px;
+    width: 50%;
+    min-width: 45%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #95989A;
+    text-align: center;
+}
+
+.home-body-buttons button a {
+    color: #95989A;
+    text-decoration: none;
+}
+
+/* SUPPORT */
+
+.support1 {
+    background-color: #d1d1d1;
+    height: 250px;
+}
+
+.support2 {
+    background-color: #FF7600;
+    height: 250px;
+}
+
+.support3 {
+    background-color: #d1d1d1;
+    height: 250px;
+}
+
+.step {
+    padding-top: 55px;
+}
+
+.step h1 {
+    padding: 0px 0px 0px 0px;
+    color: #fff;
+}
+
+.step h4 {
+    padding: 0px 0px 0px 0px;
+    color: #fff;
+    font-family: 'Helvetica', sans-serif;
+    font-weight: lighter;
+    line-height: 120%;
+}
+
+
+/* FOOTERS */
+
+.footer {
+	background-color: #F5F5F5;
+	font-family: 'Helvetica', sans-serif;
+    padding-top: 75px;
+	font-kerning: auto;
+	font-size: 12px;
+	height: 300px;
+    box-shadow: 0px 24px 66px black;
+}
+
+.footer .info1 {
+    text-align: left;
+}
+
+.footer .info2 {
+    padding-top: 10px;
+}
+
+.footer h4 {
+    font-family:'Roboto Slab', serif;
+    /*border-bottom: 1px solid #95989A;*/
+    text-align: center;
+}
+
+.footer p {
+    text-align: center;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0px;
+    text-align: center;
+}
+
+.footer li {
+    padding: 5px;
+    height: 150px;
+    width: 150px;
+    display: inline;
+}
+
+
+
+

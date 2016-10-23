@@ -20,6 +20,7 @@
     "babel-preset-react": "^6.5.0",
     "body-parser": "^1.15.0",
     "compression": "^1.6.2",
+    "css-loader": "^0.25.0",
     "express": "^4.13.4",
     "googleplaces": "^0.6.0",
     "if-env": "^1.0.0",
@@ -32,6 +33,7 @@
     "react-router": "^2.8.1",
     "sequelize": "^3.24.4",
     "socket.io": "^1.4.5",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.0",
     "webpack-dev-middleware": "^1.6.1"
   }

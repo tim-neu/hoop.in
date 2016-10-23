@@ -1,0 +1,32 @@
+.create-body input {
+	position: relative;
+	top: 100px;
+	margin: 35px 20px 0px 20px;
+    width: 50%;
+    min-width: 45%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #95989A;
+    text-align: center;
+}
+
+.create-body input[type=text]:focus {
+    border-bottom: 1px solid #FF7600;
+    outline: none;
+}
+
+.create-body button {
+	position: relative;
+	top: 100px;
+	margin: 35px 20px 0px 20px;
+    width: 23%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #95989A;
+    text-align: center;
+}
+
+.create-body button a {
+    color: #95989A;
+    text-decoration: none;
+}
